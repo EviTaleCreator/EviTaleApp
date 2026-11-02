@@ -6,9 +6,6 @@ const asset=path=>import.meta.env.BASE_URL+path.replace(/^\//,'');
 let stories = [];
 function cover(s) { return s.image ? `<img class="story-cover" src="${esc(editorMode?s.image:asset(s.image))}" alt="${esc(s.imageAlt || s.title)}" loading="lazy">` : art(s.color); }
 
-let remembered=[];
-try{const value=JSON.parse(localStorage.getItem('evi-saved')||'[]');if(Array.isArray(value))remembered=value.filter(v=>typeof v==='string');}catch{}
-const saved = new Set(remembered);
 let filter='Visos pasakos',query='';
 
 function art(type, cls='') {return `<div class="art ${type} ${cls}" aria-hidden="true"><div class="moon"></div><div class="stars">✦ · ˚　 ✧<br>　 ·　 ✦　 ·</div><div class="hill back"></div><div class="hill front"></div><div class="tree t1"></div><div class="tree t2"></div><div class="animal"><i class="ear e1"></i><i class="ear e2"></i><i class="face"></i><i class="eye"></i><i class="nose"></i><i class="tail"></i></div><div class="sprigs">✧　╱　✧</div></div>`}
@@ -23,10 +20,9 @@ document.querySelector('#app').innerHTML=`
 
 function render(){
  const list=stories.filter(s=>(filter==='Visos pasakos'||s.topic===filter)&&(s.title+' '+s.topic).toLocaleLowerCase('lt').includes(query.toLocaleLowerCase('lt')));
- document.querySelector('#cards').innerHTML=list.length?list.map(s=>`<article class="card"><button class="cover-button" data-read="${esc(s.id)}" aria-label="Skaityti: ${esc(s.title)}">${cover(s)}<span class="cover-title">EVI TALE CREATOR<span>${esc(s.title)}</span><i>Mažos istorijos dideliems atradimams</i></span></button><button class="bookmark ${saved.has(s.id)?'is-saved':''}" data-save="${esc(s.id)}" aria-label="${saved.has(s.id)?'Pašalinti iš lentynos':'Išsaugoti pasaką'}" aria-pressed="${saved.has(s.id)}">${saved.has(s.id)?'♥':'♡'}</button><div class="card-meta"><span>${esc(s.topic)}</span><span>◷ ${s.time} min. skaitymo</span></div><h3><button data-read="${esc(s.id)}">${esc(s.title)}</button></h3><p>${esc(s.desc)}</p><button class="read-link" data-read="${esc(s.id)}">Skaityti pasaką <span aria-hidden="true">→</span></button></article>`).join(''):'<div class="empty"><span>✧</span><h3>Čia dar tylu</h3><p>Pabandykite kitą paiešką arba išsaugokite patikusią pasaką spustelėdami širdelę.</p><button class="primary" id="reset">Rodyti visas pasakas</button></div>';
+ document.querySelector('#cards').innerHTML=list.length?list.map(s=>`<article class="card"><button class="cover-button" data-read="${esc(s.id)}" aria-label="Skaityti: ${esc(s.title)}">${cover(s)}<span class="cover-title">EVI TALE CREATOR<span>${esc(s.title)}</span><i>Mažos istorijos dideliems atradimams</i></span></button><div class="card-meta"><span>${esc(s.topic)}</span><span>◷ ${s.time} min. skaitymo</span></div><h3><button data-read="${esc(s.id)}">${esc(s.title)}</button></h3><p>${esc(s.desc)}</p><button class="read-link" data-read="${esc(s.id)}">Skaityti pasaką <span aria-hidden="true">→</span></button></article>`).join(''):'<div class="empty"><span>✧</span><h3>Čia dar tylu</h3><p>Pabandykite kitą paiešką arba pasirinkite kitą temą.</p><button class="primary" id="reset">Rodyti visas pasakas</button></div>';
 }
 document.addEventListener('click',e=>{
- const save=e.target.closest('[data-save]'); if(save){const id=save.dataset.save;saved.has(id)?saved.delete(id):saved.add(id);try{localStorage.setItem('evi-saved',JSON.stringify([...saved]));}catch{}render();}
  const f=e.target.closest('[data-filter]');if(f){filter=f.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('selected',b===f));render();}
  const read=e.target.closest('[data-read]');if(read)openStory(read.dataset.read);
  if(e.target.closest('#close-reader'))document.querySelector('#reader').close();

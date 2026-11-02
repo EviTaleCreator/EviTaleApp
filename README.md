@@ -31,7 +31,7 @@ Kiekvienos pasakos pradžioje tarp `---` eilučių yra paprasti laukai:
 
 | Laukas | Reikšmė |
 | --- | --- |
-| `id` | Unikalus vardas: mažosios lotyniškos raidės, skaitmenys ir brūkšneliai. Esamos pasakos id nekeiskite, kad išliktų lankytojų žymelės. |
+| `id` | Unikalus vardas: mažosios lotyniškos raidės, skaitmenys ir brūkšneliai. |
 | `title` | Pavadinimas. |
 | `topic` | Tema. Nauja tema automatiškai atsiras filtruose. |
 | `desc` | Trumpas vienos eilutės aprašymas lentynoje. |
@@ -85,4 +85,4 @@ npm run preview -- --port 4173
 
 `admin/`, `server.mjs`, `dev.mjs`, `content/stories.json` ir `tests/server.test.mjs` išsaugoti ateičiai. Jie **neįtraukiami į GitHub Pages svetainę**, administratoriaus slaptažodžio Pages versijai nereikia. Serverinio varianto komandos: `npm run dev:editor`, `npm run build:editor`, `npm run start:editor`. Jam vis tiek reikia Node.js serverio, `ADMIN_PASSWORD` ir išliekančio disko. Jo `.data/` turinys automatiškai nepersikelia į Pages; dabartinės pasakos pateiktos `content/stories/*.md` failuose.
 
-Įgarsinimas, mokėjimai ir vaiko paskyros kol kas neįgyvendinti. Mėgstamos pasakos saugomos lankytojo naršyklėje.
+Įgarsinimas, mokėjimai ir vaiko paskyros kol kas neįgyvendinti.
