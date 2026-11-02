@@ -13,6 +13,12 @@ Pasakų svetainė veikia tik su GitHub Pages: nereikia atskiro serverio, duomen�
 
 Vėliau užtenka įrašyti pakeitimus į `main`: publikavimas prasidės automatiškai. Atskiras Vercel ar kitas hostingas nereikalingas. Jei saugykla privati ir Pages nustatymuose prašoma pakeisti planą, privačiai saugyklai reikia tinkamo GitHub plano; saugyklos matomumo automatiškai nekeiskite. GitHub Pages svetainė paprastai viešai prieinama.
 
+## Jei po saugyklos matomumo pakeitimo rodomas baltas langas
+
+Šaltinis turi būti **GitHub Actions**, o ne **Deploy from a branch → main / root**. Saugyklos šaknyje yra kūrimo failai, kurių GitHub Pages pats nesurenka. Tinkamas publikavimo paketas yra `dist/`.
+
+`Publish GitHub Pages` procesas prieš publikavimą patikrina šį nustatymą ir, jei reikia, perjungia į `workflow`. Atidarykite Actions ir paleiskite šį procesą iš naujo. Jis taip pat patikrina, kad pakete būtų surinkti JavaScript failai, pasakų duomenys ir iliustracijos. Jei GitHub neleidžia automatiniu žetonu pakeisti Pages nustatymų, vieną kartą rankiniu būdu pasirinkite **Settings → Pages → Source → GitHub Actions** ir pakartokite procesą.
+
 ## Pakeisti pasakos tekstą be programavimo
 
 1. Atidarykite [content/stories](https://github.com/EviTaleCreator/EviTaleApp/tree/main/content/stories).

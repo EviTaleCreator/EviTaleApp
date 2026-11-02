@@ -24,6 +24,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npm run check:pages
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -38,6 +39,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Ensure Pages uses the built Actions artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type')
+          echo "Current Pages build type: $current"
+          if [ "$current" != "workflow" ]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" \
+              -f build_type=workflow --silent
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{build_type,html_url}'
       - name: Verify Pages configuration
         uses: actions/configure-pages@v5
       - name: Publish site
