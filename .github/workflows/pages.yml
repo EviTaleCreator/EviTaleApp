@@ -44,10 +44,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           current=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type')
-          echo "Current Pages build type: $current"
+          echo "::notice title=Pages source::Current build type: $current"
           if [ "$current" != "workflow" ]; then
-            gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" \
-              -f build_type=workflow --silent
+            if ! gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" \
+              -f build_type=workflow --silent; then
+              echo "::warning title=Pages setting needs the repository owner::Choose Settings > Pages > Source > GitHub Actions. The workflow token cannot change this setting. The compiled site will still be deployed now."
+            fi
           fi
           gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{build_type,html_url}'
       - name: Verify Pages configuration
@@ -55,3 +57,11 @@ jobs:
       - name: Publish site
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the published website
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/check-live-pages.mjs
