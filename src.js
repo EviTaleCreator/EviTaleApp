@@ -1,8 +1,10 @@
-import './style.css';
-
 import { escapeHtml as esc } from './shared.js';
-const editorMode=import.meta.env.MODE==='editor';
-const asset=path=>import.meta.env.BASE_URL+path.replace(/^\//,'');
+const environment=import.meta.env??{};
+const editorMode=environment.MODE==='editor';
+const standalone=!environment.BASE_URL;
+const asset=path=>(environment.BASE_URL||new URL(/* @vite-ignore */ './public/',import.meta.url).href)+path.replace(/^\//,'');
+const catalogVersion=typeof __CONTENT_VERSION__!=='undefined'?__CONTENT_VERSION__:Date.now();
+const catalogUrl=standalone?new URL(/* @vite-ignore */ './content/stories.json',import.meta.url).href:asset('stories.json');
 let stories = [];
 function cover(s) { return s.image ? `<img class="story-cover" src="${esc(editorMode?s.image:asset(s.image))}" alt="${esc(s.imageAlt || s.title)}" loading="lazy">` : art(s.color); }
 
@@ -33,9 +35,9 @@ const dialog=document.querySelector('#reader');dialog.addEventListener('click',e
 function openStory(id){const s=stories.find(s=>s.id===id);document.querySelector('#reader-content').innerHTML=`<button class="close" id="close-reader" aria-label="Uždaryti pasaką">×</button><div class="reader-heading">${cover(s)}<span class="eyebrow">${esc(s.topic)} · 8–12 metų · ${s.time} min.</span><h2>${esc(s.title)}</h2><p class="demo-label">${s.sample ? 'Pavyzdinė pasaka · Evi Tale Creator prototipas' : 'Evi Tale Creator · Pasaka jūsų šeimai'}</p></div><div class="story-text">${s.body.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="story-end">✧</div>${s.note?`<details><summary>Suaugusiesiems: tarp pasakos eilučių</summary><p>${esc(s.note)}</p><p>Galite paklausti: „Kuri istorijos vieta tau įsiminė?“ Atsakymo skubinti nereikia.</p></details>`:''}<p class="audio-note">♬ Įgarsinimas planuojamas. Šiuo metu pasaką galima skaityti.</p></div>`;dialog.showModal();dialog.scrollTop=0;}
 async function loadStories() {
  try {
-  const response=await fetch(editorMode?'/api/stories':asset(`stories.json?v=${__CONTENT_VERSION__}`),{cache:'no-store'});
+  const response=await fetch(editorMode?'/api/stories':`${catalogUrl}?v=${catalogVersion}`,{cache:'no-store'});
   if(!response.ok) throw new Error('Nepavyko įkelti pasakų');
-  stories=await response.json(); render();
+  stories=(await response.json()).filter(s=>s.status!=='draft'); render();
   const topics=['Visos pasakos',...new Set(stories.map(s=>s.topic))];
   document.querySelector('.filters').innerHTML=topics.map(x=>`<button class="filter ${x===filter?'selected':''}" data-filter="${esc(x)}">${esc(x)}</button>`).join('');
  } catch {

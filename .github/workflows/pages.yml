@@ -40,18 +40,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Ensure Pages uses the built Actions artifact
+      - name: Read Pages configuration
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          current=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type')
-          echo "::notice title=Pages source::Current build type: $current"
-          if [ "$current" != "workflow" ]; then
-            if ! gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" \
-              -f build_type=workflow --silent; then
-              echo "::warning title=Pages setting needs the repository owner::Choose Settings > Pages > Source > GitHub Actions. The workflow token cannot change this setting. The compiled site will still be deployed now."
-            fi
-          fi
           gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{build_type,html_url}'
       - name: Verify Pages configuration
         uses: actions/configure-pages@v5

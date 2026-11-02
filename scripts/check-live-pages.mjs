@@ -17,17 +17,23 @@ async function check(){
  const pageUrl=new URL(site);pageUrl.searchParams.set('v',version);
  const html=await(await read(pageUrl.href)).text();
  const scripts=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
- assert.ok(scripts.some(s=>s.includes('/assets/')&&s.endsWith('.js')),'The live page must use compiled JavaScript assets.');
+ const standalone=scripts.includes('./src.js');
+ assert.ok(standalone||scripts.some(s=>s.includes('/assets/')&&s.endsWith('.js')),'The live page must load a supported JavaScript entry point.');
  assert.equal(html.includes('src="/src.js"'),false,'Live site is publishing repository source instead of the built artifact.');
  const source=await Promise.all(scripts.map(async s=>{const response=await read(s);assert.match(response.headers.get('content-type')||'',/javascript/,'JavaScript must be served with a JavaScript MIME type.');return response.text();}));
- assert.ok(source.some(text=>text.includes(version)),'The published JavaScript must match the current content version.');
+ if(standalone){
+  assert.ok(source.some(text=>text.includes('const environment=import.meta.env??{}')),'Direct branch publishing must use browser-compatible JavaScript.');
+  await read('shared.js');
+ }else assert.ok(source.some(text=>text.includes(version)),'The published JavaScript must match the current content version.');
  const css=[...html.matchAll(/<link[^>]+href="([^"]+\.css)"/g)].map(m=>m[1]);
  assert.ok(css.length,'Live page must load its stylesheet.');
  await Promise.all(css.map(s=>read(s)));
- const stories=await(await read(`stories.json?v=${version}`)).json();assert.deepEqual(stories,expected,'Published stories must exactly match the current repository content.');
- await Promise.all(stories.filter(s=>s.image).map(s=>read(s.image)));
- await read('illustrations/red-thread-bird.png');
- console.log(`::notice title=Live Pages verified::${site}?v=${version} serves the current content version, compiled JavaScript, CSS, illustrations and ${stories.length} stories: ${stories.map(s=>s.title).join('; ')}.`);
+ const catalog=await(await read(`${standalone?'content/stories.json':'stories.json'}?v=${version}`)).json();
+ const stories=catalog.filter(s=>s.status!=='draft').map(({status,...s})=>s);assert.deepEqual(stories,expected,'Published stories must exactly match the current repository content.');
+ const prefix=standalone?'public/':'';
+ await Promise.all(stories.filter(s=>s.image).map(s=>read(prefix+s.image)));
+ await read(prefix+'illustrations/red-thread-bird.png');
+ console.log(`::notice title=Live Pages verified::${site}?v=${version} serves the current content version in ${standalone?'direct branch':'compiled'} mode, JavaScript, CSS, illustrations and ${stories.length} stories: ${stories.map(s=>s.title).join('; ')}.`);
 }
 let error;
 for(let attempt=0;attempt<6;attempt++){

@@ -13,11 +13,13 @@ Pasakų svetainė veikia tik su GitHub Pages: nereikia atskiro serverio, duomen�
 
 Vėliau užtenka įrašyti pakeitimus į `main`: publikavimas prasidės automatiškai. Atskiras Vercel ar kitas hostingas nereikalingas. Jei saugykla privati ir Pages nustatymuose prašoma pakeisti planą, privačiai saugyklai reikia tinkamo GitHub plano; saugyklos matomumo automatiškai nekeiskite. GitHub Pages svetainė paprastai viešai prieinama.
 
-## Jei po saugyklos matomumo pakeitimo rodomas baltas langas
+## Apsauga nuo neteisingo publikavimo šaltinio
 
-Šaltinis turi būti **GitHub Actions**, o ne **Deploy from a branch → main / root**. Saugyklos šaknyje yra kūrimo failai, kurių GitHub Pages pats nesurenka. Tinkamas publikavimo paketas yra `dist/`.
+Rekomenduojamas šaltinis yra **GitHub Actions**. Svetainė taip pat moka veikti tiesiai iš `main` šaknies: `index.html` naudoja santykinius CSS ir JavaScript kelius, o `src.js` veikia įprastoje naršyklėje be surinkimo. `.nojekyll` leidžia saugyklą pateikti kaip statinius failus. Tiesioginio pateikimo režimu iliustracijos imamos iš `public/illustrations/`, o pasakų kopija – iš `content/stories.json`.
 
-`Publish GitHub Pages` procesas prieš publikavimą patikrina šį nustatymą ir, jei reikia, perjungia į `workflow`. Atidarykite Actions ir paleiskite šį procesą iš naujo. Jis taip pat patikrina, kad pakete būtų surinkti JavaScript failai, pasakų duomenys ir iliustracijos. Jei GitHub neleidžia automatiniu žetonu pakeisti Pages nustatymų, vieną kartą rankiniu būdu pasirinkite **Settings → Pages → Source → GitHub Actions** ir pakartokite procesą.
+Tai apsauga, kad alternatyvus Pages publikavimas nebeperrašytų veikiančios svetainės baltu langu. `content/stories.json` kopiją reikia palaikyti kartu su `content/stories/*.md`; pagrindinis Actions surinkimas visada naudoja `.md` failus. Keičiant tik `.md` failus patogiausia rinktis **Source → GitHub Actions**, kad svetainė visada naudotų automatiškai surinktą naujausią turinį.
+
+`check-live-pages.mjs` tikrina abu pateikimo būdus: HTML, JavaScript ir CSS pasiekiamumą, visas pasakas pagal dabartinius `.md` failus bei jų iliustracijas. Jei naršyklėje liko sena versija, atidarykite svetainę privačiame lange arba atlikite pilną atnaujinimą (`Ctrl+Shift+R`).
 
 ## Pakeisti pasakos tekstą be programavimo
 
