@@ -5,7 +5,7 @@ topic: Prisirišimas
 status: published
 color: garden
 sample: false
-image: illustrations/red-thread-bird.png
+image: illustrations/raudona-gija.jpg
 imageAlt: Paukštelis ant gudobelės šakos greta raudono vilnonio siūlo.
 desc: Kikilis Čiūta randa raudoną vilnonį siūlą. Jam saugant savo lobį, gudobelių krūme keičiasi metų laikai.
 ---

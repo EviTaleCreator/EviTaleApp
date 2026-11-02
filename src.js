@@ -33,7 +33,7 @@ const dialog=document.querySelector('#reader');dialog.addEventListener('click',e
 function openStory(id){const s=stories.find(s=>s.id===id);document.querySelector('#reader-content').innerHTML=`<button class="close" id="close-reader" aria-label="Uždaryti pasaką">×</button><div class="reader-heading">${cover(s)}<span class="eyebrow">${esc(s.topic)} · 8–12 metų · ${s.time} min.</span><h2>${esc(s.title)}</h2><p class="demo-label">${s.sample ? 'Pavyzdinė pasaka · Evi Tale Creator prototipas' : 'Evi Tale Creator · Pasaka jūsų šeimai'}</p></div><div class="story-text">${s.body.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="story-end">✧</div>${s.note?`<details><summary>Suaugusiesiems: tarp pasakos eilučių</summary><p>${esc(s.note)}</p><p>Galite paklausti: „Kuri istorijos vieta tau įsiminė?“ Atsakymo skubinti nereikia.</p></details>`:''}<p class="audio-note">♬ Įgarsinimas planuojamas. Šiuo metu pasaką galima skaityti.</p></div>`;dialog.showModal();dialog.scrollTop=0;}
 async function loadStories() {
  try {
-  const response=await fetch(editorMode?'/api/stories':asset('stories.json'));
+  const response=await fetch(editorMode?'/api/stories':asset(`stories.json?v=${__CONTENT_VERSION__}`),{cache:'no-store'});
   if(!response.ok) throw new Error('Nepavyko įkelti pasakų');
   stories=await response.json(); render();
   const topics=['Visos pasakos',...new Set(stories.map(s=>s.topic))];
