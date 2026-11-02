@@ -1,68 +1,30 @@
 [
   {
-    "id": "zvaigzde",
-    "title": "Lapinas, kuris ieškojo savo žvaigždės",
-    "topic": "Savęs pažinimas",
-    "color": "night",
-    "icon": "✧",
-    "time": 8,
-    "desc": "Kartais tam, kad atrastum savo šviesą, reikia išdrįsti pasiklysti.",
-    "body": [
-      "Kiekvieną vakarą mažasis lapinas skaičiuodavo žvaigždes. Viena jam atrodė šiltesnė už visas kitas. „Ji tikriausiai mano“, – pagalvodavo jis ir užmigdavo, susirietęs po sena pušimi.",
-      "Tačiau vieną vakarą dangų užklojo debesys. Lapinas ilgai laukė, kol jie prasiskirs, o paskui susikrovė į kišenę tris giles ir išėjo ieškoti savo žvaigždės.",
-      "Prie upelio jis sutiko pelėdą. „Jeigu nežinau, kur eiti, gal aš nieko nemoku?“ – paklausė lapinas. Pelėda palaukė, kol nutils vandens pliuškenimas. „Nežinoti kelio ir nemokėti keliauti – visai skirtingi dalykai.“",
-      "Lapinas keliavo visą naktį. Jis padėjo ežiukui ištraukti leteną iš šaknų, pasidalijo gile su pele ir atsisėdo šalia liūdinčio barsuko. Kiekvieną kartą krūtinėje pasidarydavo truputį šilčiau.",
-      "Auštant jis priėjo ežerą. Vandens paviršiuje atsispindėjo mažas, pavargęs lapinas. Žvaigždės ten nebuvo. Bet jo akys švietė.",
-      "„Gal man nebūtina turėti žvaigždę, kad galėčiau kam nors pašviesti“, – pagalvojo jis. Ir pasuko namo. Šį kartą kelias jau neatrodė toks tamsus."
-    ],
-    "note": "Pasaka kviečia pastebėti, kad mūsų vertė nepriklauso nuo vieno pasiekimo ar kitų pripažinimo. Palikite vaikui erdvės savai interpretacijai: ką jam reiškia lapino žvaigždė?",
+    "id": "raudona-gija-gudobeliu-krume",
+    "title": "Raudona gija gudobelių krūme",
+    "topic": "Prisirišimas",
+    "desc": "Kikilis Čiūta randa raudoną vilnonį siūlą. Jam saugant savo lobį, gudobelių krūme keičiasi metų laikai.",
     "status": "published",
-    "sample": true,
-    "image": "",
-    "imageAlt": ""
-  },
-  {
-    "id": "dramblys",
-    "title": "Drambliukas ir per didelis jausmas",
-    "topic": "Emocijos",
-    "color": "pink",
-    "icon": "☁",
-    "time": 6,
-    "desc": "Apie jausmą, kuris netilpo kišenėje, ir draugą, kuris mokėjo išklausyti.",
-    "body": [
-      "Tą rytą drambliukas pabudo su keistu gumulu pilve. Jis buvo sunkesnis už akmenį ir didesnis už pusryčių dubenėlį.",
-      "„Nėra ko pykti“, – pasakė praskrendantis paukštis. Tačiau gumulas tik paaugo. Drambliukas bandė jį paslėpti po skarele, bet šis niekur nedingo.",
-      "Prie tvenkinio sėdėjo vėžlys. „Gali pasėdėti čia“, – tarė jis. Neklausė, kodėl drambliukas paniuręs. Neskubino šypsotis.",
-      "Kurį laiką abu klausėsi nendrių. Tada drambliukas pasakė: „Mano draugas šiandien išėjo žaisti be manęs. Man liūdna. Ir pikta.“",
-      "Vėžlys linktelėjo. „Gali ir liūdėti, ir pykti. Abu jausmai čia telpa.“ Gumulas pilve tapo minkštesnis.",
-      "Grįždamas drambliukas dar truputį liūdėjo. Bet dabar žinojo: jausmo nebūtina išvaryti. Kartais užtenka jam surasti vardą ir vietą šalia draugo."
-    ],
-    "note": "Jausmų įvardijimas ir ramus buvimas šalia gali padėti vaikui. Pasaka nesiūlo vieno teisingo būdo nusiraminti ir nėra individualios psichologinės pagalbos pakaitalas.",
-    "status": "published",
-    "sample": true,
-    "image": "",
-    "imageAlt": ""
-  },
-  {
-    "id": "sodas",
-    "title": "Sodas, kuriame kiekvienas augo savaip",
-    "topic": "Draugystė",
     "color": "garden",
-    "icon": "❋",
-    "time": 7,
-    "desc": "Mažas daigelis atranda, kad žydėti galima ir savo laiku.",
+    "sample": false,
+    "image": "illustrations/red-thread-bird.png",
+    "imageAlt": "Paukštelis ant gudobelės šakos greta raudono vilnonio siūlo.",
     "body": [
-      "Seno sodo pakraštyje augo mažas daigelis. Aplink jį tulpės jau skleidė žiedus, o žirnis kas rytą užlipdavo dar vienu laipteliu aukščiau.",
-      "Daigelis matavo save nukritusiu lapu. Vakar buvo tokio pat dydžio. Šiandien – irgi. „Turbūt augu neteisingai“, – pagalvojo jis.",
-      "Sodininkė atsisėdo šalia. „Ką šiandien pastebėjai?“ – paklausė. Daigelis parodė į aukštąjį žirnį. „Jis jau pasiekė tvorą.“",
-      "„O tu?“ Daigelis nuleido akis į žemę ir pajuto naują šaknelę. Mažą, bet stiprią. Jos niekas nematė. Net jis pats iki šiol nepastebėjo.",
-      "Dienos ėjo. Daigelis gėrė lietų, ilsėjosi saulėje ir kartais vis dar žvalgėsi į kaimynus. Bet vis dažniau prisimindavo savo šaknis.",
-      "Vasaros pabaigoje jis pražydo mažais baltais žiedais. Naktį jie kvepėjo taip, kad į sodą atskrisdavo drugiai. Tulpės jau ilsėjosi. Dabar buvo jo laikas."
+      "Kikilis Čiūta turėjo keistą pomėgį – jis rinkdavo ant žievės sustingusius gintarinius sakų lašelius ir dėliodavo juos ant lizdo krašto, kad rytais per juos lūžtų saulės šviesa. Tačiau tą rugpjūčio popietę, kai vėjas pirmąkart atsiduso šaltu rūku, Čiūta rado kai ką geresnio. Tarp dygliuotų gudobelės šakų plevėsavo raudonas vilnonis siūlas.",
+      "Jis buvo toks šiltas, tarsi savyje vis dar laikytų vasaros kaitrą, ir kvepėjo dūmais bei avies vilna. Įpynęs siūlą į lizdo dugną, paukštelis pajuto, kaip krūtinėje nutyla neramus virpulys. Kai prisiglausdavo prie raudonos gijos, net vėstantys vakarai atrodydavo nebaisūs.",
+      "Rugsėjį gudobelės uogos prisirpo ir tapo tamsios lyg sukrešėjęs kraujas. Kiti kikiliai jau būriavosi aukštai beržų viršūnėse, čiauškėdami apie tolimus pietų miškus.",
+      "– Čiūta, skrendam prie upelio! – vieną rytą pašaukė jo draugė Guoda, snapu vikriai gliaudydama kankorėžį. – Ten šiandien pilna saldžių uodų, o vanduo dar šiltas!",
+      "Čiūta jau sujudino sparnus, bet žvilgtelėjo žemyn. Vėjas kedeno lizdo kraštą, ir raudonas siūlas krustelėjo. O jeigu, kol jis maudysis, atskris kėkštas ir ištemps jo lobį?",
+      "– Man čia geriau matosi musės, – pamelavo Čiūta ir snapu stipriau įspraudė siūlo galą tarp sausų smilgų.",
+      "Guoda tik gūžtelėjo pečiais ir nuplasnojo viena. Čiūta palydėjo ją akimis, nurydamas seilę, – jis taip mėgo taškytis seklumoje, kad vandens lašai net ant uodegos džiūdami kutendavo. Tačiau palikti lizdą dabar atrodė pernelyg pavojinga. Kad vėjas siūlo neišpūstų, kitą dieną Čiūta vieną jo galą kuo tvirčiau apsuko aplink dygliuotą gudobelės šaką.",
+      "Atėjo spalis, paskui – lapkritis. Krūmas nuplikęs sujuodo, o lizdas nuo šalnų ir rūko pasidarė kietas bei šaltas. Čiūta neberinko sakų – jie visi nukrito į purvą. Jis nebeskrido net iki artimiausios pušies, tik tupėjo susigūžęs, snapu nuolat taisydamas raudonąjį turtą. Siūlas nuo drėgmės pajuodo, susivėlė, bet Čiūtai vis dar atrodė, kad be jo šaltis persmelks iki pat kaulų. Būriai seniai išskrido, ir krūme liko tik vėjo švilpimas.",
+      "Tą vakarą dangus tarsi nusileido žemai. Pakilo vėtra. Šakos ėmė blaškytis, daužydamos lizdą. Čiūta išsigandęs pasimuistė ir bandė pakilti, bet jam neramiai tupinėjant laisvasis siūlo galas apsivijo jo kairę kojelę. Paukštelis trūktelėjo. Šlapia vilna, užuot pasidavusi, stipriau susiveržė aplink ploną blauzdelę.",
+      "Lietus pliūptelėjo ledinėmis čiurkšlėmis. Vėjo gūsis kilstelėjo lizdą ir bloškė jį žemyn. Čiūta suspurdėjo, desperatiškai plakdamas sparnais, bet kiekvienas trūktelėjimas tik dar labiau veržė kilpą. Antrasis siūlo galas laikėsi tvirtai prikabintas prie dygliuotos šakos.",
+      "Staiga lizdas persivertė. Sunkus, permirkęs samanų ir šakelių gniužulas užgriuvo tiesiai ant paukščio, prispausdamas jį prie dygliuotų šakų. Šaltis ir tamsa užėmė kvapą. Kojelę nudiegė aštrus skausmas, paskui viskas aptirpo.",
+      "Ir tada Čiūta iš paskutiniųjų suplakė sparnais. Jam pasirodė, kad pasigirdo tylus pokštelėjimas – tarsi trūktų įtempta styga. Sunkumas dingo. Paukštelis lengvai šovė į viršų, pro šlapias šakas, tiesiai į juodus debesis. Jis kilo vis aukščiau, nejausdamas nei vėjo, nei šlapdribos, kol galiausiai išniro virš audros. Ten plytėjo vaiskus, žydras dangus, o didelė vasaros saulė šildė pašiauštas plunksnas. Čiūta plačiai išskleidė sparnus ir nuskrido ten, kur kvepėjo sakais ir upelio vandeniu.",
+      "O apačioje, po juodais debesimis, vėtra pamažu rimo. Gudobelės krūme, tarp dygliuotų šakų, kabojo apvirtęs, sunkus nuo vandens lizdas. Iš po jo dugno žemyn driekėsi raudonas vilnonis siūlas – tvirtai prikabintas prie šakos ir įsitempęs lyg styga, tarsi apačioje, tamsoje, vis dar kažką laikytų."
     ],
-    "note": "Vaikai auga nevienodu tempu. Ši istorija leidžia švelniai paliesti lyginimosi su kitais temą, nepadarant žydėjimo privalomu atlygiu už kantrybę.",
-    "status": "published",
-    "sample": true,
-    "image": "",
-    "imageAlt": ""
+    "note": "",
+    "time": 4
   }
 ]

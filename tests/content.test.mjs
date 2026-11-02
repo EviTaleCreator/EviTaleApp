@@ -29,7 +29,7 @@ test('invalid content is rejected before publishing',()=>{
  for(const [from,to] of [['status: draft','status: hidden'],['id: bandymas','id: ../../secret'],['color: garden','color: unknown'],['image:','image: https://example.com/file.png'],['sample: false','sample: yes'],['desc: Istorija skaitytojams.','desc:']])assert.throws(()=>parseStory(fixture.replace(from,to)));
 });
 test('story IDs must be unique and illustrations must exist',async()=>{const dir=await mkdtemp(join(tmpdir(),'evi-content-'));try{await mkdir(join(dir,'stories'));await mkdir(join(dir,'public'));await writeFile(join(dir,'stories/a.md'),fixture);await writeFile(join(dir,'stories/b.md'),fixture);await assert.rejects(()=>readStories(join(dir,'stories'),join(dir,'public')),/jau naudojamas/);await rm(join(dir,'stories/b.md'));await writeFile(join(dir,'stories/a.md'),fixture.replace('image:','image: illustrations/missing.png'));await assert.rejects(()=>readStories(join(dir,'stories'),join(dir,'public')),/nerasta/);}finally{await rm(dir,{recursive:true,force:true});}});
-test('repository stories are valid and ready for static publication',async()=>{const stories=await readStories('content/stories','public');assert.ok(stories.length>=3);assert.ok(stories.some(s=>s.status==='published'));});
+test('repository stories are valid and ready for static publication',async()=>{const stories=await readStories('content/stories','public');assert.ok(stories.length>=1);assert.ok(stories.some(s=>s.status==='published'));});
 test('static build output includes published text and omits drafts completely',async()=>{
  const dir=await mkdtemp(join(tmpdir(),'evi-publish-'));try{
   await mkdir(join(dir,'stories'));await mkdir(join(dir,'public'));

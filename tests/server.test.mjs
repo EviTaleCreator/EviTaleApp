@@ -1,10 +1,12 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
-import {mkdtemp,rm} from 'node:fs/promises';
+import {mkdtemp,rm,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomBytes} from 'node:crypto';
+
+const seedCount=JSON.parse(await readFile('content/stories.json','utf8')).length;
 
 async function start(data,password){
  const process=spawn(globalThis.process.execPath,['server.mjs'],{env:{...globalThis.process.env,DATA_DIR:data,ADMIN_PASSWORD:password,PORT:'0'},stdio:['ignore','pipe','pipe']});
@@ -17,7 +19,7 @@ test('authenticated story publishing, image privacy and persistence',async t=>{
  const request=(path,method='GET',body,auth=true,headers={})=>fetch(server.url+path,{method,headers:{...(auth&&cookie?{Cookie:cookie}:{}),'X-Evi-Editor':'1',...(body?{'Content-Type':'application/json'}:{}),...headers},body:body===undefined?undefined:JSON.stringify(body)});
  try{
   await t.test('public stories work; anonymous visitors cannot access drafts or mutate',async()=>{
-   const r=await request('/api/stories');assert.equal((await r.json()).length,3);
+   const r=await request('/api/stories');assert.equal((await r.json()).length,seedCount);
    assert.equal((await request('/api/admin/stories','GET',undefined,false)).status,401);
    assert.equal((await request('/api/admin/stories','POST',{},false)).status,401);
   });
