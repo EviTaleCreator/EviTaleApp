@@ -6,3 +6,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Generated static content; edit content/stories/*.md instead.
+public/stories.json

@@ -1,0 +1,24 @@
+Naują pasaką sukurkite content/stories kataloge, pavadinkite, pvz., nauja-pasaka.md.
+Nukopijuokite tekstą nuo pirmos --- eilutės iki failo pabaigos.
+Metaduomenis rašykite vienoje eilutėje be išorinių kabučių.
+Paskelbimui pakeiskite status: draft į status: published.
+
+---
+id: nauja-pasaka
+title: Naujos pasakos pavadinimas
+topic: Emocijos
+status: draft
+color: garden
+sample: false
+image:
+imageAlt:
+desc: Trumpas aprašymas, kuris bus matomas pasakų lentynoje.
+---
+
+Čia prasideda jūsų pasaka. Tiesiog įrašykite arba įklijuokite tekstą.
+
+Pastraipas atskirkite tuščia eilute.
+
+## Suaugusiesiems
+
+Čia galite įrašyti papildomas mintis suaugusiesiems. Šis skyrius neprivalomas.

@@ -1,53 +1,82 @@
-# Evi Tale Creator
+# Evi Tale Creator · GitHub Pages
 
-Lietuviška pasakų lentyna ir slaptažodžiu apsaugotas turinio redaktorius. Vieša svetainė rodo tik paskelbtas pasakas; juodraščiai prieinami tik prisijungus. Turinys išsaugomas serveryje, o ne naršyklėje ar automatiškai GitHub saugykloje.
+Pasakų svetainė veikia tik su GitHub Pages: nereikia atskiro serverio, duomenų bazės, slaptažodžių ar mokamo hostingo. GitHub Actions surenka statinius failus ir paskelbia juos po kiekvieno pakeitimo `main` šakoje.
 
-## Paleidimas savo kompiuteryje
+**Svetainė:** https://evitalecreator.github.io/EviTaleApp/
 
-Reikia Node.js 22 arba 24.
+## Pirmą kartą įjungti publikavimą
 
-1. `npm ci`
-2. Nukopijuokite `.env.example` į `.env`. Savo kompiuterio teksto redaktoriumi įrašykite unikalų `ADMIN_PASSWORD` (bent 12 simbolių). `.env` yra ignoruojamas Git. Slaptažodžio nekelkite į GitHub ir nesiųskite pokalbyje.
-3. `npm run dev -- --port 5173`
-4. Vietinėje naršyklėje atidarykite svetainę per 5173 prievadą; redaktorius yra `/admin/`. Prisijunkite nustatytu slaptažodžiu.
+1. Saugykloje atidarykite **Settings → Pages**: https://github.com/EviTaleCreator/EviTaleApp/settings/pages
+2. Skiltyje **Build and deployment → Source** pasirinkite **GitHub Actions**.
+3. Atidarykite **Actions → Publish GitHub Pages → Run workflow → Run workflow**: https://github.com/EviTaleCreator/EviTaleApp/actions/workflows/pages.yml
+4. Palaukite, kol `build` ir `deploy` užduotys bus žalios. Atidarykite aukščiau nurodytą svetainės adresą. Pirmas publikavimas gali užtrukti kelias minutes.
 
-Jei slaptažodis nenustatytas, vieša lentyna veikia, bet prisijungimas į redaktorių lieka užrakintas. Slaptažodžio pakeitimui ir naujam `.env` pritaikyti paleiskite serverį iš naujo. Sesijos galioja iki 8 valandų ir nutraukiamos perkrovus serverį.
+Vėliau užtenka įrašyti pakeitimus į `main`: publikavimas prasidės automatiškai. Atskiras Vercel ar kitas hostingas nereikalingas. Jei saugykla privati ir Pages nustatymuose prašoma pakeisti planą, privačiai saugyklai reikia tinkamo GitHub plano; saugyklos matomumo automatiškai nekeiskite. GitHub Pages svetainė paprastai viešai prieinama.
 
-## Kaip naudotis redaktoriumi
+## Pakeisti pasakos tekstą be programavimo
 
-- Svetainės apačioje rinkitės **Turinio redaktorius** arba atidarykite `/admin/`.
-- Rinkitės esamą pasaką arba **Nauja pasaka**.
-- Įrašykite pavadinimą, temą, aprašymą, tekstą ir, jei norite, pastabas suaugusiesiems. Pastraipas atskirkite tuščia eilute; skaitymo trukmė apskaičiuojama automatiškai.
-- Įkelkite PNG, JPG arba WebP iki 8 MB ir pridėkite vaizdo aprašymą. SVG nepriimamas.
-- **Peržiūrėti** parodo dar neišsaugotą tekstą. **Išsaugoti pakeitimus** išsaugo serveryje.
-- **Juodraštis** slepiamas nuo lankytojų. **Paskelbta** parodo pasaką viešoje lentynoje po išsaugojimo. Norint paslėpti pasaką, grąžinkite į juodraštį ir išsaugokite.
-- **Atsisiųsti turinio kopiją** eksportuoja tekstus JSON formatu. Ši kopija neapima iliustracijų; visai atsarginei kopijai saugokite visą duomenų katalogą.
-- Trinant prašoma patvirtinimo. Redaktorius įspėja apie neišsaugotus pakeitimus ir atmeta konfliktuojančius pakeitimus iš kito lango.
+1. Atidarykite [content/stories](https://github.com/EviTaleCreator/EviTaleApp/tree/main/content/stories).
+2. Pasirinkite pasakos `.md` failą ir spauskite pieštuką **Edit** (kai kuriuose vaizduose pirmiausia pasirinkite **Code**).
+3. Pakeiskite pavadinimą, aprašymą arba tekstą. Pastraipas atskirkite tuščia eilute.
+4. Paspauskite **Commit changes**, pasirinkite įrašymą į `main` ir patvirtinkite.
+5. Actions lange palaukite žalio **Publish GitHub Pages** rezultato, tada atnaujinkite svetainę.
 
-## Viešas hostingas
+Kiekvienos pasakos pradžioje tarp `---` eilučių yra paprasti laukai:
 
-Tai Node.js programa, ne vien statiniai failai. Vien GitHub Pages ar statinio Vercel diegimo šiam redaktoriui nepakanka. Reikia Node.js hostingo su **išliekančiu disku** ir HTTPS, pavyzdžiui, tinkamai sukonfigūruoto Render/Railway serverio ar VPS.
+| Laukas | Reikšmė |
+| --- | --- |
+| `id` | Unikalus vardas: mažosios lotyniškos raidės, skaitmenys ir brūkšneliai. Esamos pasakos id nekeiskite, kad išliktų lankytojų žymelės. |
+| `title` | Pavadinimas. |
+| `topic` | Tema. Nauja tema automatiškai atsiras filtruose. |
+| `desc` | Trumpas vienos eilutės aprašymas lentynoje. |
+| `status` | `published` – rodyti svetainėje; `draft` – neįtraukti teksto į svetainės failus. |
+| `color` | Atsarginis viršelis: `night`, `pink` arba `garden`. |
+| `sample` | `true` – pavyzdinis tekstas; savo pasakoms naudokite `false`. |
+| `image` | Pvz. `illustrations/mano-pasaka.png`; galima palikti tuščią. |
+| `imageAlt` | Trumpas iliustracijos aprašymas nematantiems skaitytojams. |
 
-- Diegimo komanda: `npm ci && npm run build`.
-- Paleidimo komanda: `npm start`.
-- Hostingo saugiuose aplinkos nustatymuose pridėkite `ADMIN_PASSWORD`.
-- `DATA_DIR` turi nurodyti išliekančiame diske esantį katalogą, pvz. `/data/evitale`. Prijunkite diską prieš pirmą naudojimą. Duomenys negali būti laikomi vien laikinoje aplikacijos failų sistemoje.
-- `PORT` pateikia hostingas (numatyta 3001). Naudokite HTTPS ir vieną serverio egzempliorių; failinė saugykla neskirta keliems serveriams ar bendradarbiavimui realiu laiku.
-- Įjungus išorinį reverse proxy, jis turi išsaugoti pradinį `Host` ir perduoti `X-Forwarded-Proto: https`, kad sesijos slapukas būtų pažymėtas `Secure`.
+Kiekvieną lauką rašykite vienoje eilutėje, po dvitaškio. Išorinių kabučių nereikia. Po antros `---` eilutės rašykite pasaką. Pasirenkamas skyrius `## Suaugusiesiems` su papildomomis mintimis rodomas pasakos pabaigoje. Skaitymo trukmė apskaičiuojama automatiškai.
 
-Pirmą kartą serveris nukopijuoja `content/stories.json` į `DATA_DIR/stories.json`. Vėliau redaktorius rašo tik į duomenų katalogą, o atnaujinant programos kodą esamas turinys neperrašomas. Iliustracijos saugomos `DATA_DIR/uploads/`. Reguliariai kopijuokite visą `DATA_DIR` į saugią atsarginių kopijų vietą. Ištrintų ar pakeistų iliustracijų failai automatiškai netrinami, kad nebūtų prarastas dar naudojamas turinys; viešai tiekiami tik paskelbtų pasakų naudojami failai.
+## Pridėti naują pasaką
 
-## Patikros ir struktūra
+1. Atidarykite [pasakos šabloną](content/PASAKOS-SABLONAS.txt) ir nukopijuokite dalį nuo pirmos `---` eilutės.
+2. `content/stories` kataloge rinkitės **Add file → Create new file**.
+3. Failą pavadinkite, pvz. `paukstelio-siulas.md`, įklijuokite šabloną ir užpildykite.
+4. Pasirinkite naują unikalų `id`, pvz. `paukstelio-siulas`. Kol ruošiate tekstą, palikite `status: draft`.
+5. Kai norėsite paskelbti, pakeiskite į `status: published` ir įrašykite pakeitimus.
+
+Juodraščių tekstai nepatenka į svetainės paketą, tačiau lieka GitHub saugykloje ir jos istorijoje. Jei saugykla vieša, juodraščiai ten irgi vieši. Į `public/` įkelti paveikslėliai visada vieši, net jeigu pasaka yra juodraštis. Privačių duomenų saugykloje nelaikykite.
+
+## Įkelti iliustraciją
+
+1. Atidarykite [public/illustrations](https://github.com/EviTaleCreator/EviTaleApp/tree/main/public/illustrations).
+2. Rinkitės **Add file → Upload files**, įkelkite PNG, JPG arba WebP ir įrašykite pakeitimus.
+3. Naudokite trumpą failo vardą be tarpų ir lietuviškų raidžių, pvz. `paukstelio-siulas.webp`. Rekomenduojama iki 2 MB, kad puslapis greitai atsivertų telefone.
+4. Pasakos faile įrašykite `image: illustrations/paukstelio-siulas.webp` ir užpildykite `imageAlt`.
+
+Netaisyklingus laukus, pasikartojančius id ir nerastas iliustracijas tikrina surinkimas. Jei užduotis raudona, paskutinė sėkmingai paskelbta svetainė lieka veikti; klaidą pamatysite Actions užduoties žurnale.
+
+## Vietinis kūrimas (nebūtina publikavimui)
+
+Reikia Node.js 22 arba 24:
 
 ```sh
-npm run build
-npm test
+npm ci
+npm run dev
 ```
 
-- `server.mjs`: prisijungimas, sesijos, turinio API, vaizdų įkėlimas ir produkcinio puslapio pateikimas.
-- `admin/`: turinio redaktorius; `content/stories.json`: tik pradinės pasakos.
-- `src.js`, `style.css`: viešoji svetainė; `shared.js`: tekstų HTML ekranavimas.
-- `tests/server.test.mjs`: realaus serverio integracijos patikros su laikina saugykla.
-- `docs/`: svetainės ir redaktoriaus ekrano nuotraukos.
+Vietinė svetainė yra `/EviTaleApp/` kelyje, numatytasis prievadas 5173. Po pasakų `.md` pakeitimų paleiskite `npm run dev` iš naujo, kad būtų perkurti duomenys.
 
-Dabartiniai tekstai yra pavyzdiniai. Pagrindinio ekrano iliustracija sugeneruota AI; pasakų viršeliuose, kol neįkeltas vaizdas, naudojami CSS piešiniai. Mėgstamos pasakos saugomos lankytojo naršyklėje. Įgarsinimas, mokėjimai ir vaiko paskyros dar neįgyvendinti. Prieš viešą publikavimą peržiūrėkite tekstus ir naudojamų iliustracijų teises.
+```sh
+npm test
+npm run build
+npm run preview -- --port 4173
+```
+
+`dist/` turi tik viešą svetainę, paskelbtas pasakas ir iliustracijas. Tai visas Pages publikavimui reikalingas turinys. Bazinis kelias yra `/EviTaleApp/`; pakeitus saugyklos pavadinimą, atnaujinkite `vite.config.js` arba nustatykite `PAGES_BASE_PATH` surinkimo aplinkoje.
+
+## Ankstesnis serverinis redaktorius
+
+`admin/`, `server.mjs`, `dev.mjs`, `content/stories.json` ir `tests/server.test.mjs` išsaugoti ateičiai. Jie **neįtraukiami į GitHub Pages svetainę**, administratoriaus slaptažodžio Pages versijai nereikia. Serverinio varianto komandos: `npm run dev:editor`, `npm run build:editor`, `npm run start:editor`. Jam vis tiek reikia Node.js serverio, `ADMIN_PASSWORD` ir išliekančio disko. Jo `.data/` turinys automatiškai nepersikelia į Pages; dabartinės pasakos pateiktos `content/stories/*.md` failuose.
+
+Įgarsinimas, mokėjimai ir vaiko paskyros kol kas neįgyvendinti. Mėgstamos pasakos saugomos lankytojo naršyklėje.

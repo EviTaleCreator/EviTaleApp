@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node dev.mjs",
-    "build": "vite build",
-    "preview": "node server.mjs",
-    "start": "node server.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "dev": "node scripts/build-content.mjs && vite --host 0.0.0.0",
+    "build": "node scripts/build-content.mjs && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/*.test.mjs",
+    "dev:editor": "node dev.mjs --mode editor",
+    "build:editor": "vite build --mode editor",
+    "start:editor": "node server.mjs"
   },
   "devDependencies": {
     "vite": "^6.4.1"
