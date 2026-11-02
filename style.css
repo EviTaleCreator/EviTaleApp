@@ -17,3 +17,4 @@ header{border-bottom-color:#d9dfd2}.brand-icon{color:#617343}.tiny-dot{backgroun
 
 /* Keep the full uploaded illustration visible when reading a story. */
 .cover-button .story-cover{object-position:center 42%}.reader-heading>.story-cover{height:auto;max-height:520px;object-fit:contain;background:#d5efeb}
+.cover-button[data-read="pusies-zieves-laivelis"] .story-cover{object-position:center bottom}

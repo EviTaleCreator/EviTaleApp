@@ -5,8 +5,8 @@ topic: Savęs pažinimas
 status: published
 color: garden
 sample: false
-image:
-imageAlt:
+image: illustrations/pusies-zieves-laivelis.jpg
+imageAlt: Pušies žievės laivelis su plunksnos bure ir raudonu siūlu plaukia upe tarp žalių krūmų ir auksinių žolių.
 desc: Rami upė Alanta išgirsta keliautojų susižavėjimą kaimyne Žvelsa ir ryžtasi pakeisti savo kelią.
 ---
 
