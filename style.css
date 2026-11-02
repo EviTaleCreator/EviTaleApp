@@ -10,3 +10,7 @@ header{border-bottom-color:#d9dfd2}.brand-icon{color:#617343}.tiny-dot{backgroun
 @media(min-width:1450px){.hero{padding-top:72px;padding-bottom:100px}.hero-illustration{height:470px}}
 @media(max-width:1000px){.hero{padding:45px 35px 75px;margin:20px 20px 0;min-height:500px;gap:5px}.hero-illustration{height:360px;width:calc(100% + 35px)}.hero h1{font-size:46px}.hero-copy>p{font-size:12px}.hero .eyebrow{font-size:7px}.floating-note{font-size:11px;left:0;bottom:10px}}
 @media(max-width:720px){.hero{grid-template-columns:1fr;margin:12px 12px 0;padding:36px 20px 60px;gap:10px}.hero h1{font-size:46px}.hero-copy>p{font-size:13px}.hero .eyebrow{font-size:6px;letter-spacing:1px}.hero-visual{width:100%;max-width:440px;height:290px;padding:0}.hero-illustration{width:100%;height:290px;object-position:65% center;border-radius:40% 40% 4px 4px;mask-image:none;-webkit-mask-image:none}.floating-note{bottom:0;left:10px;font-size:11px}.story-thread{height:60px}.values{padding:20px 0}.hero-foot{font-size:9px}.hero .primary{font-size:12px}.future small{font-size:8px}}
+
+/* Uploaded story illustrations are shared by the public shelf and reader. */
+.story-cover{display:block;width:100%;height:278px;object-fit:cover}.cover-button:has(.story-cover) .cover-title{display:none}.reader-heading>.story-cover{height:260px}.story-text>p,.story-text details p{white-space:pre-line}
+@media(min-width:1450px){.story-cover{height:305px}}@media(max-width:1000px){.story-cover{height:250px}}@media(max-width:720px){.story-cover{height:325px}.reader-heading>.story-cover{height:200px}}
